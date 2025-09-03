@@ -16,4 +16,4 @@ jobs:
       - name: Build Docker image
         run: docker build -t ditt-anvandarnamn/din-tjanst:latest ./api
 
-#test     
+#test     test test
