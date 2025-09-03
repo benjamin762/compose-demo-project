@@ -16,4 +16,5 @@ jobs:
       - name: Build Docker image
         run: docker build -t ditt-anvandarnamn/din-tjanst:latest ./api
 
-#test     
+      - name: Run tests
+        run: npm test
