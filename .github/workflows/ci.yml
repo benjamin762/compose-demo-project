@@ -18,3 +18,9 @@ jobs:
 
       - name: Run tests
         run: docker run --rm ditt-anvandarnamn/din-tjanst:latest npm test
+
+      - name: Build microservice docker image 
+        run: docker build -t ditt-anvandarnamn/microservice:latest ./microservice
+
+      - name: Run microservice tests
+        run: docker run --rm ditt-anvandarnamn/microservice:latest npm test
