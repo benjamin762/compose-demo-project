@@ -14,6 +14,6 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Build Docker image
-        run: docker build -t ditt-användarnamn/din-tjänst:latest ./api
+        run: docker build -t ditt-anvandarnamn/din-tjanst:latest ./api
 
 #test     
