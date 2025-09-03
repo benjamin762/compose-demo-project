@@ -19,6 +19,13 @@ jobs:
       - name: Run tests
         run: docker run --rm ditt-anvandarnamn/din-tjanst:latest npm test
 
+  microservice:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
       - name: Build microservice docker image 
         run: docker build -t ditt-anvandarnamn/microservice:latest ./microservice
 
