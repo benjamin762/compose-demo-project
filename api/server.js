@@ -25,7 +25,7 @@ app.use((req, res, next) => {
 });
 
 app.get('/api', (req, res) => {
-  res.status(500).json({ message: 'Hello from the API!' });
+  res.status(200).json({ message: 'Hello from the API!' });
 });
 
 app.post('/api/data', async (req, res) => {
