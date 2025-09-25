@@ -5,12 +5,16 @@ const { Pool } = require('pg');
 const app = express();
 app.use(express.json());
 
+// const pool = new Pool({
+//   user: 'postgres',
+//   host: 'db',
+//   database: 'my_database',
+//   password: 'my-secret-pw',
+//   port: 5432,
+// });
 const pool = new Pool({
-  user: 'postgres',
-  host: 'db',
-  database: 'my_database',
-  password: 'my-secret-pw',
-  port: 5432,
+  connectionString: process.env.DATABASE_URL,
+  ssl: { rejectUnauthorized: false }
 });
 
 app.pool = pool;
