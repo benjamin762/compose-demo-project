@@ -1,0 +1,33 @@
+name: Generate and publish API docs
+
+on:
+  pull_request:
+    branches:
+      - dev
+    workflow_dispatch:
+
+
+
+jobs:
+  api-docs:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install dependencies and generate docs
+        run: |
+          npm ci
+          npm run docs:generate
+        working-directory: ./api
+
+      - name: Deploy docs to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: ./api/docs
