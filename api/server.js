@@ -35,7 +35,7 @@ app.use('/docs', express.static('docs'));
  * /api:
  *    get:
  *      summary: Välkomstmeddelande
- *      description: Ger meassage hello.
+ *      description: Ger message hello.
  *      responses:
  *        200:
  *          description: ok
