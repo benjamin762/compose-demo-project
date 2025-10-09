@@ -15,7 +15,7 @@ const options = {
             { url: 'https://aws-todo/api'} // 
         ]
     },
-    apis: [path.resolve(__dirname, 'routes.js')],
+    apis: [path.resolve(__dirname, 'server.js')], // Det finns något annat sätt att ta alla filer istället.
 }
 
 const specs = swaggerJSDoc(options);

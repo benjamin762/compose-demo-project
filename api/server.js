@@ -28,10 +28,40 @@ app.use((req, res, next) => {
   next();
 });
 
+/**
+ * @swagger
+ * /api:
+ *    get:
+ *      summary: Välkomstmeddelande
+ *      description: Ger meassage hello.
+ *      responses:
+ *        200:
+ *          description: ok
+ *          content:
+ *            application/json:
+ *              schema:
+ *                type: object
+ *                properties:
+ *                  message:
+ *                    type: string
+ *                    expample: Hello from the API!
+ */
 app.get('/api', (req, res) => {
   res.status(200).json({ message: 'Hello from the API!' });
 });
 
+/**
+ * @swagger
+ * /api/data:
+ *   post:
+ *     summary: Spara meddelande i databasen
+ *     description: jdlsafj
+ *     responses:
+ *       '200':
+ *          description: OK
+ *       '500':
+ *          description: Error
+ */
 app.post('/api/data', async (req, res) => {
   try {
     const { message } = req.body;
