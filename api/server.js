@@ -28,6 +28,8 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use('/docs', express.static('docs'));
+
 /**
  * @swagger
  * /api:
