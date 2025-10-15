@@ -3,6 +3,9 @@ name: Init DB
 on: 
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   initdb:
     runs-on: ubuntu-latest
