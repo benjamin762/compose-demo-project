@@ -43,6 +43,14 @@ jobs:
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v3
 
+      - name: Run Snyk for Dependencies
+        uses: snyk/actions/node@master
+        continue-on-error: true
+        env:
+          SNYK_TOKEN: ${{ sectrets.SNYK_TOKEN }}
+        with:
+          args: --files=./api/package.json
+
   microservice:
     runs-on: ubuntu-latest
 
