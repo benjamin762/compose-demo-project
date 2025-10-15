@@ -43,6 +43,16 @@ jobs:
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v3
 
+  snyk:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
       - name: Run Snyk for Dependencies
         uses: snyk/actions/node@master
         continue-on-error: true
@@ -50,7 +60,7 @@ jobs:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
           command: test
-          args: --file=./api/package.json
+          args: --all-projects
 
   microservice:
     runs-on: ubuntu-latest
