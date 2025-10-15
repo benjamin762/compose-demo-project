@@ -49,7 +49,9 @@ jobs:
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
-          args: --files=./api/package.json
+          command: test
+          file: ./api
+          # file: /api/package.json
 
   microservice:
     runs-on: ubuntu-latest
