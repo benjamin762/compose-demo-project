@@ -19,6 +19,27 @@ jobs:
       - name: Run tests
         run: docker run --rm ditt-anvandarnamn/din-tjanst:latest npm test
 
+  code-ql:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      security-events: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action@v3
+        with:
+          languages: javascript
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3
+
   microservice:
     runs-on: ubuntu-latest
 
