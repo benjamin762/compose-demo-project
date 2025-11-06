@@ -1,0 +1,25 @@
+name: Init DB
+
+on: 
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  initdb:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Run init.sql against Azure DB
+        env:
+          PGHOST: ${{ secrets.PGHOST }}
+          PGDATABASE: ${{ secrets.PGDATABASE }}
+          PGUSER: ${{ secrets.PGUSER }}
+          PGPASSWORD: ${{ secrets.PGPASSWORD }}
+        run: |
+          psql -h "$PGHOST" -d "$PGDATABASE" -U "$PGUSER" -f db/init.sql
+

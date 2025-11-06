@@ -1,0 +1,95 @@
+name: Build and Test
+
+on:
+  pull_request:
+    branches:
+      - dev
+  push:
+    branches:
+      - dev
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build -t ${{ secrets.ACR_URL }}/din-tjanst:latest ./api
+
+      - name: Run tests
+        run: docker run --rm ${{ secrets.ACR_URL }}/din-tjanst:latest npm test
+
+# Lösning som utgår från att jag skrev namnen och började med copilots förslag.
+# Linus lösning är med run: docker login istället för uses azure/docker-login
+      - name: Login to ACR
+        uses: azure/docker-login@v1
+        with:
+          login-server: ${{ secrets.ACR_URL }}
+          username: ${{ secrets.ACR_USER }}
+          password: ${{ secrets.ACR_PASSWORD }}
+
+      - name: Push image to ACR
+        run: docker push ${{ secrets.ACR_URL }}/din-tjanst:latest
+
+
+  code-ql:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      security-events: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: javascript
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3
+
+  snyk:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run Snyk for Dependencies
+        uses: snyk/actions/node@master
+        continue-on-error: true
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          command: test
+          args: --all-projects
+
+  microservice:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build microservice docker image 
+        run: docker build -t ditt-anvandarnamn/microservice:latest ./microservice
+
+      - name: Run microservice tests
+        run: docker run --rm ditt-anvandarnamn/microservice:latest npm test
