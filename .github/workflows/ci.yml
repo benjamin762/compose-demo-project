@@ -25,6 +25,8 @@ jobs:
       - name: Run tests
         run: docker run --rm ${{ secrets.ACR_URL }}/din-tjanst:latest npm test
 
+# Lösning som utgår från att jag skrev namnen och började med copilots förslag.
+# Linus lösning är med run: docker login istället för uses azure/docker-login
       - name: Login to ACR
         uses: azure/docker-login@v1
         with:
