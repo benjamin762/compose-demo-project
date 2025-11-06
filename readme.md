@@ -18,3 +18,6 @@ SWA för att det är samma som dev staging och gick snabbt att sätta upp.
 
 Länk till prod:
 https://yellow-pond-0204c4e03.3.azurestaticapps.net/
+
+Varför de två app service för dev och prod bör ligga i separata resusrsgrupper. För att de inte ska blandas ihop eller kunna påverkja varandra. Dev ska inte kunna råka ändra i prod.
+
