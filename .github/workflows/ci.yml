@@ -28,12 +28,12 @@ jobs:
       - name: Login to ACR
         uses: azure/docker-login@v1
         with:
-          login-server: ${{ secrets.ACT_URL }}
+          login-server: ${{ secrets.ACR_URL }}
           username: ${{ secrets.ACR_USER }}
           password: ${{ secrets.ACR_PASSWORD }}
 
       - name: Push image to ACR
-        run: docker push ${{ secrets.ACT_URL }}/din-tjanst:latest
+        run: docker push ${{ secrets.ACR_URL }}/din-tjanst:latest
 
 
   code-ql:
