@@ -49,6 +49,7 @@ app.use('/docs', express.static('docs'));
  *                    expample: Hello from the API!
  */
 app.get('/api', (req, res) => {
+  console.error('🤢🤮🤢🤮🤢 TYDLIGT FELMEDDELANDE 🤢🤮🤢🤮🤢')
   res.status(200).json({ message: 'Hello from the API!' });
 });
 
