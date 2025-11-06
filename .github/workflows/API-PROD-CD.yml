@@ -23,7 +23,7 @@ jobs:
         with:
           app-name: 'webappname2317894'
           slot-name: 'production'
-          images: ${{ secrets.ACR_URL_PROD }}/din-tjanst:$(git rev-parse --short HEAD)
+          images: ${{ secrets.ACR_URL_PROD }}/din-tjanst:${{ github.sha }}
           publish-profile: ${{ secrets.PROD_AZURE_WEBAPP_PUBLISH_PROFILE }}
 
           #asdf

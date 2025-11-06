@@ -22,10 +22,10 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Build Docker image
-        run: docker build -t ${{ secrets.ACR_URL }}/din-tjanst:$(git rev-parse --short HEAD) ./api
+        run: docker build -t ${{ secrets.ACR_URL }}/din-tjanst:${{ github.sha }} ./api
 
       - name: Run tests
-        run: docker run --rm ${{ secrets.ACR_URL }}/din-tjanst:$(git rev-parse --short HEAD) npm test
+        run: docker run --rm ${{ secrets.ACR_URL }}/din-tjanst:${{ github.sha }} npm test
 
 # Lösning som utgår från att jag skrev namnen och började med copilots förslag.
 # Linus lösning är med run: docker login istället för uses azure/docker-login
@@ -37,7 +37,7 @@ jobs:
           password: ${{ secrets.ACR_PASSWORD }}
 
       - name: Push image to ACR
-        run: docker push ${{ secrets.ACR_URL }}/din-tjanst:$(git rev-parse --short HEAD)
+        run: docker push ${{ secrets.ACR_URL }}/din-tjanst:${{ github.sha }}
 
 
   code-ql:
@@ -91,7 +91,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Build microservice docker image 
-        run: docker build -t ditt-anvandarnamn/microservice:$(git rev-parse --short HEAD) ./microservice
+        run: docker build -t ditt-anvandarnamn/microservice:${{ github.sha }} ./microservice
 
       - name: Run microservice tests
-        run: docker run --rm ditt-anvandarnamn/microservice:$(git rev-parse --short HEAD) npm test
+        run: docker run --rm ditt-anvandarnamn/microservice:${{ github.sha }} npm test
