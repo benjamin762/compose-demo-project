@@ -12,3 +12,6 @@ Skärmdump av preview deployment
 
 Permanent staging url: https://zealous-river-0dc42d203.3.azurestaticapps.net/
 Den här länken ska delas med externa intressenter för att den kan uppdateras och den försvinner inte när nya pr skapar nya staging enviroments som försvinner när pr stängs.
+
+Val av produktionsmiljö: \
+SWA för att det är samma som dev staging och gick snabbt att sätta upp.

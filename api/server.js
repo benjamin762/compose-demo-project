@@ -49,6 +49,7 @@ app.use('/docs', express.static('docs'));
  *                    expample: Hello from the API!
  */
 app.get('/api', (req, res) => {
+  console.error('🤢🤮🤢🤮🤢 TYDLIGT FELMEDDELANDE 🤢🤮🤢🤮🤢')
   res.status(200).json({ message: 'Hello from the API!' });
 });
 
@@ -83,7 +84,7 @@ app.post('/api/data', async (req, res) => {
 
 function start(port = process.env.PORT || 3000) {
   const server = app.listen(port, () => {
-    console.log(`API is running on http://localhost:${server.address().port}`);
+    console.log(`API is running on http://localhost:${server.address()?.port}`);
   });
   return server;
 }
