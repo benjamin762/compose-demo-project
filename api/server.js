@@ -50,7 +50,7 @@ app.use('/docs', express.static('docs'));
  */
 app.get('/api', (req, res) => {
   console.error('🤢🤮🤢🤮🤢 TYDLIGT FELMEDDELANDE 🤢🤮🤢🤮🤢')
-  res.status(200).json({ message: 'Hello from the API!' });
+  res.status(500).json({ message: 'Hello from the API!' });//Medvetet fel som failar test
 });
 
 /**
