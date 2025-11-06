@@ -15,3 +15,6 @@ Den här länken ska delas med externa intressenter för att den kan uppdateras 
 
 Val av produktionsmiljö: \
 SWA för att det är samma som dev staging och gick snabbt att sätta upp.
+
+Länk till prod:
+https://yellow-pond-0204c4e03.3.azurestaticapps.net/
