@@ -84,7 +84,7 @@ app.post('/api/data', async (req, res) => {
 
 function start(port = process.env.PORT || 3000) {
   const server = app.listen(port, () => {
-    console.log(`API is running on http://localhost:${server.address().port}`);
+    console.log(`API is running on http://localhost:${server.address()?.port}`);
   });
   return server;
 }
