@@ -22,6 +22,17 @@ jobs:
       - name: Run tests
         run: docker run --rm ditt-anvandarnamn/din-tjanst:latest npm test
 
+      - name: Login to ACR
+        uses: azure/docker-login@v1
+        with:
+          login-server: ${{ secrets.ACT_URL }}
+          username: ${{ secrets.ACR_USERNAME }}
+          password: ${{ secrets.ACR_PASSWORD }}
+
+      - name: Push image to ACR
+        run: docker push ${{ secrets.ACT_URL }}/din-tjanst:latest
+
+
   code-ql:
     runs-on: ubuntu-latest
 
