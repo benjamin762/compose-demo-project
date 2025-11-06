@@ -19,6 +19,7 @@ jobs:
       - name: Deploy
         uses: azure/webapps-deploy@v2
         with:
-          app-name: 'compose-demo-app'
+          app-name: 'webappname2317894'
+          slot-name: 'production'
           images: ${{ secrets.ACR_URL }}/din-tjanst:latest
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
